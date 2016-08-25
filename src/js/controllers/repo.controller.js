@@ -146,7 +146,8 @@ function RepoController (RepoService, $stateParams, $cookies, $state) {
 		obj.content = content.new_content;
 		obj.id = id;
 
-		RepoService.editPost(obj).then(()=>{
+		RepoService.editPost(obj).then((res)=>{
+			console.log(res)
 			$state.go($state.current, {}, {reload: true});
 		});
 	}
@@ -155,28 +156,36 @@ function RepoController (RepoService, $stateParams, $cookies, $state) {
 		let obj  = {};
 		obj.id   = id;
 		obj.vote = 1;
-		RepoService.upvoteRepo(obj);
+		RepoService.upvoteRepo(obj).then(()=>{
+			$state.go($state.current, {}, {reload: true});
+		});
 	}
 
 	function downvoteRepo (id, item) {
 		let obj  = {};
 		obj.id   = id;
 		obj.vote = -1;
-		RepoService.downvoteRepo(obj);
+		RepoService.downvoteRepo(obj).then(()=>{
+			$state.go($state.current, {}, {reload: true});
+		});
 	}
 
 	function upvoteComment (id, item) {
 		let obj  = {};
 		obj.id   = id;
 		obj.vote = 1;
-		RepoService.upvoteComment(obj);
+		RepoService.upvoteComment(obj).then(()=>{
+			$state.go($state.current, {}, {reload: true});
+		});
 	}
 
 	function downvoteComment (id) {
 		let obj  = {};
 		obj.id   = id;
 		obj.vote = -1;
-		RepoService.downvoteComment(obj);
+		RepoService.downvoteComment(obj).then(()=>{
+			$state.go($state.current, {}, {reload: true});
+		});
 	}
 
 	function init () {
